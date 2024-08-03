@@ -8,7 +8,7 @@ namespace MindboxTest.Geometry
 {
     public class Circle : Figure
     {
-        private uint Radius { get; }
+        public uint Radius { get; }
         private const double P = 3.14D;
 
         public Circle(uint radius)

@@ -11,7 +11,7 @@ namespace MindboxTest.Tests.UnitTests
     public class CircleTests
     {
         [Fact]
-        public void GetAreaWithNilRadius()
+        public void GetAreaWithZeroRadius()
         {
             Figure figure = new Circle(0);
 
