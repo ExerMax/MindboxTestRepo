@@ -9,7 +9,7 @@ namespace MindboxTest.Geometry
     public class Circle : Figure
     {
         private uint Radius { get; }
-        private const double P = 3.14d;
+        private const double P = 3.14D;
 
         public Circle(uint radius)
         {
@@ -18,7 +18,7 @@ namespace MindboxTest.Geometry
 
         public override double Area()
         {
-            double area = Radius * Radius * P;
+            double area = (double)Radius * Radius * P;
 
             return area;
         }

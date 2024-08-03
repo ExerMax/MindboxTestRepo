@@ -24,6 +24,7 @@ namespace MindboxTest.Geometry
 
         public override double Area()
         {
+            //Semiperimeter
             double p = (A + B + C) / 2;
 
             double area = Math.Sqrt(p * (p - A) * (p - B) * (p - C));
