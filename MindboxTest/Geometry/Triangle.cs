@@ -9,26 +9,29 @@ namespace MindboxTest.Geometry
 {
     public class Triangle : Figure
     {
-        public double A { get { return (uint)A; } set { } }
-        public double B { get { return (uint)B; } set { } }
-        public double C { get { return (uint)C; } set { } }
+        private double _a;
+        private double _b;
+        private double _c;
+        public uint A { get { return Convert.ToUInt32(_a); } }
+        public uint B { get { return Convert.ToUInt32(_b); } }
+        public uint C { get { return Convert.ToUInt32(_c); } }
 
         public Triangle(uint a, uint b, uint c)
         {
             if(GetHypotenuse(a, b, c) * 2D < ((double)a + (double)b + (double)c))
             {
-                A = (double)a;
-                B = (double)b;
-                C = (double)c;
+                _a = (double)a;
+                _b = (double)b;
+                _c = (double)c;
             }
         }
 
         public override double Area()
         {
             //Semiperimeter
-            double p = (A + B + C) / 2D;
+            double p = (_a + _b + _c) / 2D;
 
-            double sqr = p * (p - A) * (p - B) * (p - C);
+            double sqr = p * (p - _a) * (p - _b) * (p - _c);
 
             double area = Math.Sqrt(sqr);
 
@@ -37,9 +40,9 @@ namespace MindboxTest.Geometry
 
         public bool IsRightAngled()
         {
-            double hypotenuse = GetHypotenuse(A, B, C);
+            double hypotenuse = GetHypotenuse();
 
-            if ((A*A + B*B + C*C) == (hypotenuse*hypotenuse*2))
+            if ((_a * _a + _b * _b + _c * _c) == (hypotenuse*hypotenuse*2))
             {
                 return true;
             }
@@ -49,6 +52,10 @@ namespace MindboxTest.Geometry
         private double GetHypotenuse(double a, double b, double c)
         {
             return Math.Max(Math.Max(a, b), c);
+        }
+        private double GetHypotenuse()
+        {
+            return Math.Max(Math.Max(_a, _b), _c);
         }
     }
 }

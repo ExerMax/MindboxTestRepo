@@ -48,5 +48,31 @@ namespace MindboxTest.Tests.UnitTests
 
             Assert.Equal(expected, res);
         }
+
+        [Fact]
+        public void IsTriangleRightAngled()
+        {
+            uint a = 3;
+            uint b = 4;
+            uint c = 5;
+            Triangle figure = new Triangle(a, b, c);
+
+            var res = figure.IsRightAngled();
+
+            Assert.Equal(true, res);
+        }
+
+        [Fact]
+        public void IsTriangleNotRightAngled()
+        {
+            uint a = 3;
+            uint b = 4;
+            uint c = 6;
+            Triangle figure = new Triangle(a, b, c);
+
+            var res = figure.IsRightAngled();
+
+            Assert.Equal(false, res);
+        }
     }
 }
