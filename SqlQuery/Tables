@@ -1,0 +1,19 @@
+CREATE TABLE Categories
+(
+  Id int Primary KEY,
+  Name varchar(100)
+)
+
+CREATE TABLE Products
+(
+  Id int Primary KEY,
+  Name varchar(100)
+)
+
+CREATE TABLE ProductCategory
+(
+  ProductId int,
+  CategoryId int,
+  FOREIGN KEY (ProductId) REFERENCES Products(Id),
+  FOREIGN KEY (CategoryId) REFERENCES Categories(Id)
+)
