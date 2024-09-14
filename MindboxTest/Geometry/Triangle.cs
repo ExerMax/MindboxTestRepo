@@ -1,37 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindboxTest.Geometry
+﻿namespace MindboxTest.Geometry
 {
     public class Triangle : Figure
     {
-        private double _a;
-        private double _b;
-        private double _c;
-        public uint A { get { return Convert.ToUInt32(_a); } }
-        public uint B { get { return Convert.ToUInt32(_b); } }
-        public uint C { get { return Convert.ToUInt32(_c); } }
+        public double A { get; set; }
+        public double B { get; set; }
+        public double C { get; set; }
 
-        public Triangle(uint a, uint b, uint c)
+        public Triangle(double a, double b, double c)
         {
-            if(GetHypotenuse(a, b, c) * 2D < ((double)a + (double)b + (double)c))
+            if (GetHypotenuse(a, b, c) * 2D < (a + b + c))
             {
-                _a = (double)a;
-                _b = (double)b;
-                _c = (double)c;
+                A = a;
+                B = b;
+                C = c;
+            }
+            else
+            {
+                throw new ArgumentException($"Triangle with sides ( {a}, {b}, {c} ) is not possible");
             }
         }
 
         public override double Area()
         {
+            //Heron's formula
             //Semiperimeter
-            double p = (_a + _b + _c) / 2D;
+            double p = (A + B + C) / 2D;
 
-            double sqr = p * (p - _a) * (p - _b) * (p - _c);
+            //Main expression
+            double sqr = p * (p - A) * (p - B) * (p - C);
 
             double area = Math.Sqrt(sqr);
 
@@ -42,11 +38,7 @@ namespace MindboxTest.Geometry
         {
             double hypotenuse = GetHypotenuse();
 
-            if ((_a * _a + _b * _b + _c * _c) == (hypotenuse*hypotenuse*2))
-            {
-                return true;
-            }
-            else return false;
+            return (A * A + B * B + C * C) == (hypotenuse * hypotenuse * 2) ? true : false;
         }
 
         private double GetHypotenuse(double a, double b, double c)
@@ -55,7 +47,7 @@ namespace MindboxTest.Geometry
         }
         private double GetHypotenuse()
         {
-            return Math.Max(Math.Max(_a, _b), _c);
+            return Math.Max(Math.Max(A, B), C);
         }
     }
 }

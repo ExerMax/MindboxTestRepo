@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MindboxTest.Geometry
+﻿namespace MindboxTest.Geometry
 {
     public class Circle : Figure
     {
-        public uint Radius { get; }
+        public double Radius { get; }
+
         private const double P = 3.14D;
 
-        public Circle(uint radius)
+        public Circle(double radius)
         {
             Radius = radius;
         }
 
         public override double Area()
         {
-            double area = (double)Radius * Radius * P;
-
-            return area;
+            return Radius * Radius * P;
         }
     }
 }

@@ -1,10 +1,4 @@
 ﻿using MindboxTest.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace MindboxTest.Tests.UnitTests
@@ -12,21 +6,27 @@ namespace MindboxTest.Tests.UnitTests
     public class TriangleTests
     {
         [Fact]
-        public void GetAreaWithZeroSides()
+        public void CreateTriangleWithZeroSides()
         {
-            Figure figure = new Triangle(0, 0, 0);
+            Exception? res = null;
+            try
+            {
+                Figure figure = new Triangle(0, 0, 0);
+            }
+            catch(Exception ex)
+            {
+                res = ex;
+            }
 
-            var res = figure.Area();
-
-            Assert.Equal(0, res);
+            Assert.NotNull(res);
         }
 
         [Fact]
         public void GetAreaWithSomeSides()
         {
-            uint a = 10;
-            uint b = 14;
-            uint c = 15;
+            double a = 10;
+            double b = 14;
+            double c = 15;
             double p = (a + b + c) / 2D;
             var expected = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
             Figure figure = new Triangle(a, b, c);
@@ -37,24 +37,11 @@ namespace MindboxTest.Tests.UnitTests
         }
 
         [Fact]
-        public void GetAreaWithMaxSides()
-        {
-            uint a = UInt32.MaxValue;
-            double p = (double)a * 3 / 2;
-            var expected = Math.Sqrt(p * (p - a) * (p - a) * (p - a));
-            Triangle figure = new Triangle(a, a, a);
-
-            var res = figure.Area();
-
-            Assert.Equal(expected, res);
-        }
-
-        [Fact]
         public void IsTriangleRightAngled()
         {
-            uint a = 3;
-            uint b = 4;
-            uint c = 5;
+            double a = 3;
+            double b = 4;
+            double c = 5;
             Triangle figure = new Triangle(a, b, c);
 
             var res = figure.IsRightAngled();
@@ -65,9 +52,9 @@ namespace MindboxTest.Tests.UnitTests
         [Fact]
         public void IsTriangleNotRightAngled()
         {
-            uint a = 3;
-            uint b = 4;
-            uint c = 6;
+            double a = 3;
+            double b = 4;
+            double c = 6;
             Triangle figure = new Triangle(a, b, c);
 
             var res = figure.IsRightAngled();
