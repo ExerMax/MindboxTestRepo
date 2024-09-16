@@ -8,7 +8,14 @@
 
         public Circle(double radius)
         {
-            Radius = radius;
+            if(radius > 0)
+            {
+                Radius = radius;
+            }
+            else
+            {
+                throw new ArgumentException($"Circle with radius {radius} is not possible");
+            }
         }
 
         public override double Area()
