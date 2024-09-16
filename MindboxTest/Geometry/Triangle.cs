@@ -8,7 +8,7 @@
 
         public Triangle(double a, double b, double c)
         {
-            if (GetHypotenuse(a, b, c) * 2D < (a + b + c))
+            if (IsValid(a, b, c))
             {
                 A = a;
                 B = b;
@@ -41,13 +41,18 @@
             return (A * A + B * B + C * C) == (hypotenuse * hypotenuse * 2) ? true : false;
         }
 
+        private bool IsValid(double a, double b, double c)
+        {
+            return GetHypotenuse(a, b, c) * 2D < (a + b + c);
+        }
+
         private double GetHypotenuse(double a, double b, double c)
         {
             return Math.Max(Math.Max(a, b), c);
         }
         private double GetHypotenuse()
         {
-            return Math.Max(Math.Max(A, B), C);
+            return GetHypotenuse(A, B, C);
         }
     }
 }
