@@ -2,6 +2,7 @@
 {
     public class Triangle : Figure
     {
+        #region Properties and Constructors
         public double A { get; set; }
         public double B { get; set; }
         public double C { get; set; }
@@ -19,7 +20,9 @@
                 throw new ArgumentException($"Triangle with sides ( {a}, {b}, {c} ) is not possible");
             }
         }
+        #endregion
 
+        #region Public
         public override double Area()
         {
             //Heron's formula
@@ -40,7 +43,9 @@
 
             return (A * A + B * B + C * C) == (hypotenuse * hypotenuse * 2) ? true : false;
         }
+        #endregion
 
+        #region Private
         private bool IsValid(double a, double b, double c)
         {
             return GetHypotenuse(a, b, c) * 2D < (a + b + c);
@@ -54,5 +59,6 @@
         {
             return GetHypotenuse(A, B, C);
         }
+        #endregion
     }
 }
